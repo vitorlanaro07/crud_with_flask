@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block style %}{{url_for('static', filename='/css/index.css')}}{% endblock%}
+{% block content %}
+    <div class="container__index">
+        <div class="titulo__divisor titulo__divisor--sem-margim">
+            <hr class="divisor">
+            <h1 class="tasks__titulo">Página Principal</h1>
+            <hr class="divisor divisor-botom">
+        </div>
+        <div class="container__index__conteudo">
+            <img src="{{url_for('static', filename='application.png')}}" alt="" class="container__index__imagem">
+            <h1 class="container__index__titulo">Apresentação</h1>
+            <p class="container__index__texto">&nbsp &nbsp &nbsp &nbsp Essa aplicação, tem como objetivo a criação, remoção, alteração e visualização(CRUD) de tarefas e suas respectivas descrições com data e hora em que foram criadas ou editadas.</p>
+            <br>
+            <p class="container__index__texto">&nbsp &nbsp &nbsp &nbsp Visando facilitar a organização dos a fazeres diarios do usuario.</p>
+            <br>
+            <h1 class="container__index__titulo">Ordenação e Busca</h1>
+            <p class="container__index__texto">&nbsp &nbsp &nbsp &nbsp Com as tarefas já criadas, há a possibilidade de buscas por nome ou por em ordem alfabética (A-Z ou Z-A) ou ainda por criada/editada mais recentemente ou menos recentemente.</p>
+            <br>
+            <h1 class="container__index__titulo">Sessões</h1>
+            <p class="container__index__texto">&nbsp &nbsp &nbsp &nbsp A aplicação conta com um sistema de login, onde só é possivel a criação de novas tarefas assim que haver um usuario logado.</p>
+            <br>
+            <p class="container__index__texto"> Cada usuario possue suas tarefas criadas respectivamente!</p>
+            <br>
+            <h1 class="container__index__titulo">Tecnologias</h1>
+            <div class="container__index__tecnologias">
+                <img class="container__index__tecnologias__tecnologias" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" />
+                <img class="container__index__tecnologias__tecnologias" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" />
+                <img class="container__index__tecnologias__tecnologias" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original-wordmark.svg" />
+                <img class="container__index__tecnologias__tecnologias" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original-wordmark.svg" />
+                <img class="container__index__tecnologias__tecnologias" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" />
+                <img class="container__index__tecnologias__tecnologias" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original-wordmark.svg" />
+                <img class="container__index__tecnologias__tecnologias" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlalchemy/sqlalchemy-original.svg" />
+                <img class="container__index__tecnologias__tecnologias" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original-wordmark.svg" />
+            </div>
+        </div>
+    </div>
+{% endblock %}

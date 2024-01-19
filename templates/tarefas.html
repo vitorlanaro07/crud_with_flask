@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block content %}
+    <div class="navegacao">
+        <p><a href="{{url_for('index')}}">Index</a> >> <a href="{{url_for('tarefas')}}">Tarefas</a><p>
+    </div>
+    <div class="tasks">
+        <div class="task__container">
+            <div class="titulo__divisor">
+                <hr class="divisor">
+                <h1 class="tasks__titulo">Adicionar</h1>
+                <hr class="divisor divisor-botom">
+            </div>
+            <form class="forms_default" method="post" action="{{url_for('adicionar')}}">
+                <label for="tarefa" class="tasks__label">Tarefa</label>
+                <input id="tarefa" type="text" class="tasks__forms-input" placeholder="Informe a tarefa a ser realizada" name="tarefa">
+
+                <label for="descricao" class="tasks__label">Descrição</label>
+                <textarea class="tasks__forms-textarea" name="descricao" id="descricao" placeholder="Informe a descrição da tarefa"></textarea>
+                <button class="btn_submit" type="submit" onclick="enviarDados()">Adicionar</button>
+            </form>
+        </div>
+
+        {% if listTask != None %}
+            <div class="tasks__visualizacao" >
+                <div class="titulo__divisor">
+                    <hr class="divisor">
+                    <h1 class="tasks__titulo">Tarefas</h1>
+                    <hr class="divisor divisor-botom">
+                </div>
+                <div class="tasks__filtros">
+                    <input type="text" placeholder="Buscar">
+                    <select>
+                        <option selected>Ordenar</option>
+                        <option value="0" >A-Z</option>
+                        <option value="1">Z-A</option>
+                        <option value="2">↑ Recente</option>
+                        <option value="3">↓ Recente</option>
+                    </select>
+                </div>
+                <div class="tasks__apresentar">
+                    {% for x in listTask %}
+                        <div class="tasks__cards">
+                            <a href="{{url_for('tarefa_view', id=x.id)}}" style="text-decoration: none; display: contents; color: black;">
+                                <div class="tasks__cards__itens">
+                                    <span class="tasks__cards__iten tasks__cards__tarefa"><strong  class="tasks__strong">Tarefa: </strong>{{x.tarefa}}</span>
+                                    <span class="tasks__cards__iten tasks__cards__descricao"><strong class="tasks__strong">Descrição: </strong>{{x.descricao}}</span>
+                                    <span class="tasks__cards__iten tasks__cards__dia"><strong class="tasks__strong">Data: </strong>{{x.data}}</span>
+                                    <span class="tasks__cards__iten tasks__cards__hora"><strong class="tasks__strong">Hora: </strong>{{x.hora}}</span>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {%endif%}
+    </div>
+    <script src="{{url_for('static', filename='js/tasks.js')}}"></script>
+{% endblock %}

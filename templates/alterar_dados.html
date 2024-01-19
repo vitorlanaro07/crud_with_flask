@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Alterar Dados{% endblock %}
+{% block content %}
+<div class="navegacao">
+    <p><a href="{{url_for('index')}}">Index</a> >> <a href="{{url_for('alterar_dados')}}">Alterar Dados</a><p>
+</div>
+<div class="container__alterar__dados">
+    <div class="titulo__divisor titulo__divisor--sem-margim">
+        <hr class="divisor">
+        <h1 class="tasks__titulo">Alterar Dados</h1>
+        <hr class="divisor divisor-botom">
+    </div>
+    <div class="container__login__box">
+        <form class="forms_default forms_default--grid" method="post" action="{{ url_for('alterar_dados_valida') }}">
+            <label for="novo_usuario" class="container__login__label tasks__label">Novo usuario</label>
+            <input type="text" id="novo_usuario" name="novo_usuario" class="container__login__input">
+            <label for="nova_senha" class="container__login__label tasks__label">Nova senha</label>
+            <input id="nova_senha" type="password"  name="nova_senha" class="container__login__input senha">
+            <span class="mostra mostra-cadastro" onclick="mostrarSenha()">
+                <i class="fa-solid fa-eye"></i>
+            </span>
+            <span class="esconde esconde-cadastro" style="display: none;" onclick="esconderSenha()">
+                <i class="fa-solid fa-eye-slash"></i>
+            </span>
+            <label for="confirma_senha" class="container__login__label tasks__label">Confirmar senha</label>          
+            <input id="confirma_senha" type="password" name="confirma_senha" class="container__login__input senha">
+            <span class="mensagem_erro">{{mensagem}}</span>
+            <button type="submit" class="btn_submit container__login__btn">Salvar</button>
+        </form>
+    </div>
+</div>    
+<script src="{{url_for('static', filename='js/senha.js')}}"></script>
+{% endblock %}

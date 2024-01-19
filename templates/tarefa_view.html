@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Tarefa-{{tarefa.id}}{% endblock %}
+{% block content %}
+
+<div class="navegacao">
+  <p><a href="/">Index</a> >> <a href="/tarefas">Tarefas</a> >> <a href="/tarefa/{{tarefa.id}}">Tarefa-{{tarefa.id}}</a><p>
+</div>
+<div class="task__container">
+  <div class="titulo__divisor">
+    <hr class="divisor">
+    <h1 class="tasks__titulo">Tarefa:</h1>
+    <hr class="divisor divisor-botom">
+  </div>
+  <div class="task__container__botoes">
+    <button id="botao-editar" onclick="editarTask({{tarefa.id}})"><i class="fa-solid fa-pen-to-square"></i> Editar</button>
+    <button id="botao-apagar" onclick="window.location.href = '/delete/{{tarefa.id}}'"><i class="fa-solid fa-trash-can"></i> Apagar</button>
+  </div>
+  <form action="/update/{{tarefa.id}}" method="post">
+    <div class="tasks__apresentacao">
+      <div class="tasks__apresentacao__item"> 
+        <h1 >Tarefa:</h1>
+        <input type="text" name="tarefa" id="tarefa" class="tasks__forms-input input-edit" value="{{tarefa.tarefa}}" disabled>
+      </div>  
+      <div class="tasks__apresentacao__item"> 
+        <h1>Descrição:</h1>
+        <textarea class="tasks__forms-textarea span-edit" disabled name="descricao" id="descricao">{{tarefa.descricao}}</textarea>
+      </div>
+      <div class="tasks__apresentacao__item"> 
+        <h1>Hora:</h1>
+        <p class="hora__salva">{{tarefa.hora}}</p>
+      </div>
+      <div class="tasks__apresentacao__item"> 
+        <h1>Data:</h1>
+        <p class="dia__salvo">{{tarefa.data}}</p>
+      </div>
+    </div>
+    <div class="task__container__botoes botao-salvar">
+      <button disabled type="submit">Salvar</button>
+    </div>
+  </form>  
+
+<script src="{{url_for('static', filename='js/editar.js')}}"></script>
+{% endblock %}

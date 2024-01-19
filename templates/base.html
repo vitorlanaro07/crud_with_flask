@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="{{url_for('static', filename='/css/reset.css')}}">
+  <link rel="shortcut icon" href="{{url_for('static',filename='/icon/favicon.ico')}}" type="image/x-icon">
+  <link rel="stylesheet" href="{{url_for('static', filename='/css/style.css')}}">
+  <script src="https://kit.fontawesome.com/4f5308f8c5.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="cabecalho">
+    <div class="cabecalho__content">
+      <a href="{{url_for('index')}}" class="cabecalho__logo">
+        <img src="" alt="" class="cabecalho__logo__imagem">
+        Tarefa
+      </a>
+      <btn class="btn-dropdown">
+        <i class="fas fa-bars fa-fw fa-xl"></i>
+      </btn>
+    </div>
+    <div class="menu-dropdown menu-dropdown--ativo">
+      <div class="cabecalho__btns">
+        <button class="cabecalho__btn" onclick="window.location.href='{{url_for('login')}}'">Login</button>
+        <button class="cabecalho__btn" onclick="window.location.href='{{url_for('cadastro')}}'">Cadastro</button>
+      </div>
+      <div class="avatar-ico">
+        <i class="fa-solid fa-user"></i>
+        <p class="avatar-ico__name">{{usuario}}</p>
+      </div>
+      <ul class="cabecalho__menu">
+        <a href="{{url_for('index')}}" class="cabecalho__item">
+          <li class="cabecalho__link ">Index</li>
+        </a>
+        <hr class="divisor">
+        <a href="{{url_for('tarefas')}}" class="cabecalho__item">
+          <li class="cabecalho__link">Tarefas</li>
+        </a>
+        <hr class="divisor divisor--usuario-logado">
+        <a href="{{url_for('alterar_dados')}}" class="cabecalho__item">
+          <li class="cabecalho__link">Alterar dados</li>
+        </a>
+        <hr class="divisor divisor--usuario-logado">
+        <a href="{{url_for('logout')}}" class="cabecalho__item">
+          <li class="cabecalho__link">Logout</li>
+        </a>
+      </ul>
+    </div>
+  </header>
+  <div class="message message-off">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+          {% for message in messages %}
+              <p class="message__texto">{{message}}</p>
+              <spam class="message__spam"><i class="fa-solid fa-x"></i></spam>
+          {%endfor%}
+      {% endif %}
+  {% endwith %}
+  </div>
+  <main class="conteudo">
+    <div class="conteudo__central">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </main>
+  <p class="usuario_logado" hidden>{{usuario}}</p>
+
+  <footer class="footer">
+    <h1 class="footer__texto-maior">Desenvolvido por Vitor S. Lanaro</h1>
+    <h3 class="footer__texto-menor">Obrigado por estar aqui!</h3>
+  </footer>
+  <script src="{{url_for('static', filename='js/index.js')}}"></script>
+  
+</body>
+</html>
+
